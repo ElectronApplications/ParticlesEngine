@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using TaskParticles.Engine.Objects;
+using TaskParticles.Engine.Interfaces;
 
 namespace TaskParticles.Engine.Controllers
 {
@@ -22,9 +22,9 @@ namespace TaskParticles.Engine.Controllers
             G = g;
         }
 
-        public override List<GameObject> Tick(List<GameObject> gameObjects)
+        public override void ControllerTick(ParticlesEngine state)
         {
-            var attractableObjects = gameObjects.Select(obj => obj as IAttractable).Where(obj => obj != null).Select(obj => obj!);
+            var attractableObjects = state.GameObjects.Select(obj => obj as IAttractable).Where(obj => obj != null).Select(obj => obj!);
 
             foreach (var obj1 in attractableObjects)
             {
@@ -43,8 +43,6 @@ namespace TaskParticles.Engine.Controllers
                     }
                 }
             }
-
-            return gameObjects;
         }
     }
 }

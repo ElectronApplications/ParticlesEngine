@@ -5,10 +5,11 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using TaskParticles.Engine.Interfaces;
 
-namespace TaskParticles.Engine.Objects
+namespace TaskParticles.Engine.Particles
 {
-    abstract class Particle : GameObject, IDrawable
+    abstract class Particle : GameObject, IDrawable, IMovable
     {
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
@@ -24,11 +25,10 @@ namespace TaskParticles.Engine.Objects
             Position += Velocity;
         }
 
-        public virtual Matrix GetTransform()
+        public virtual Matrix GetTransform(Matrix preMatrix)
         {
-            var matrix = new Matrix();
-            matrix.Translate(Position.X, Position.Y);
-            return matrix;
+            preMatrix.Translate(Position.X, Position.Y);
+            return preMatrix;
         }
 
         public abstract void Render(Graphics g);

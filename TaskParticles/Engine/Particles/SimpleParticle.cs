@@ -4,8 +4,9 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using TaskParticles.Engine.Interfaces;
 
-namespace TaskParticles.Engine.Objects
+namespace TaskParticles.Engine.Particles
 {
     class SimpleParticle : Particle, IAttractable
     {
@@ -13,17 +14,12 @@ namespace TaskParticles.Engine.Objects
 
         public SimpleParticle(Vector2 position, Vector2 velocity, float mass) : base(position, velocity)
         {
-            this.Mass = mass;
+            Mass = mass;
         }
 
         public override void Render(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Red), -15, -15, 30, 30);
-        }
-
-        public void ApplyForce(Vector2 force)
-        {
-            Velocity += force / Mass;
         }
     }
 }

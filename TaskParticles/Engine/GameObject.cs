@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskParticles.Engine.Objects
+namespace TaskParticles.Engine
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
         public abstract void Tick();
     }
