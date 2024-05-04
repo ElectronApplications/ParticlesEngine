@@ -18,11 +18,16 @@ namespace TaskParticles.Engine
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public List<GameObject> GameObjects;
+        public List<GameObject> GameObjects { get; set; }
 
         public IEnumerable<GameController> GameControllers
         {
             get => GameObjects.Select(obj => obj as GameController).Where(obj => obj != null).Select(obj => obj!);
+        }
+
+        public IEnumerable<LeftMouseTool> LeftMouseTools
+        {
+            get => GameObjects.Select(obj => obj as LeftMouseTool).Where(obj => obj != null).Select(obj => obj!);
         }
 
         public IEnumerable<IDrawable> DrawableObjects
@@ -36,24 +41,16 @@ namespace TaskParticles.Engine
             Width = width;
             Height = height;
             GameObjects = new List<GameObject>();
-
-            GameObjects.Add(new SimpleParticle(new Vector2(width/2, height/2), Vector2.Zero, 1000));
-            GameObjects.Add(new GravityController());
-        }
-
-        public void SpawnParticle(Vector2 Position, Vector2 Velocity)
-        {
-            GameObjects.Add(new SimpleParticle(Position, Velocity, rng.Next(1, 10)));
         }
 
         public void Tick()
         {
-            foreach (var obj in GameObjects)
+            foreach (var obj in GameObjects.ToList())
             {
                 obj.Tick();
             }
 
-            foreach (var controller in GameControllers)
+            foreach (var controller in GameControllers.ToList())
             {
                 controller.ControllerTick(this);
             }
@@ -61,11 +58,42 @@ namespace TaskParticles.Engine
 
         public void Draw(Graphics g)
         {
-            foreach (var drawableObject in DrawableObjects)
+            g.Clear(Color.Black);
+            foreach (var drawableObject in DrawableObjects.ToList())
             {
                 Matrix preMatrix = new Matrix();
                 g.Transform = drawableObject.GetTransform(preMatrix);
                 drawableObject.Render(g);
+            }
+        }
+
+        public void MouseDown(int x, int y, MouseButtons button)
+        {
+            if (button == MouseButtons.Left)
+            {
+                foreach (var mouseTool in LeftMouseTools.ToList())
+                {
+                    mouseTool.MouseDown(x, y, this);
+                }
+            }
+        }
+
+        public void MouseMove(int x, int y)
+        {
+            foreach (var mouseTool in LeftMouseTools.ToList())
+            {
+                mouseTool.MouseMove(x, y, this);
+            }
+        }
+
+        public void MouseUp(int x, int y, MouseButtons button)
+        {
+            if (button == MouseButtons.Left)
+            {
+                foreach (var mouseTool in LeftMouseTools.ToList())
+                {
+                    mouseTool.MouseUp(x, y, this);
+                }
             }
         }
     }

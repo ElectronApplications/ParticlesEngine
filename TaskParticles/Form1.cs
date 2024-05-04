@@ -1,16 +1,16 @@
 using System.Drawing.Drawing2D;
 using System.Numerics;
 using TaskParticles.Engine;
+using TaskParticles.Engine.Controllers;
+using TaskParticles.Engine.MouseTools;
+using TaskParticles.Engine.Particles;
 
 namespace TaskParticles
 {
     public partial class Form1 : Form
     {
         private ParticlesEngine engine;
-
-        private bool isMouseDown = false;
-        private Vector2 mouseDown;
-        private Vector2 mouseCurrent;
+        private LeftMouseTool currentMouseTool;
 
         public Form1()
         {
@@ -18,18 +18,17 @@ namespace TaskParticles
             particlesBox.Image = new Bitmap(particlesBox.Width, particlesBox.Height);
 
             engine = new ParticlesEngine(particlesBox.Width, particlesBox.Height);
+
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
+
+            engine.GameObjects.Add(new GravityController());
+            engine.GameObjects.Add(currentMouseTool);
         }
 
         private void particlesBox_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
             engine.Draw(g);
-
-            if (isMouseDown)
-            {
-                g.Transform = new Matrix();
-                g.DrawLine(new Pen(Color.Black), mouseDown.X, mouseDown.Y, mouseCurrent.X, mouseCurrent.Y);
-            }
         }
 
         private void particlesTimer_Tick(object sender, EventArgs e)
@@ -40,20 +39,17 @@ namespace TaskParticles
 
         private void particlesBox_MouseDown(object sender, MouseEventArgs e)
         {
-            isMouseDown = true;
-            mouseDown = new Vector2(e.X, e.Y);
-        }
-
-        private void particlesBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            isMouseDown = false;
-            var position = new Vector2(e.X, e.Y);
-            engine.SpawnParticle(position, (mouseDown - position) / 15);
+            engine.MouseDown(e.X, e.Y, e.Button);
         }
 
         private void particlesBox_MouseMove(object sender, MouseEventArgs e)
         {
-            mouseCurrent = new Vector2(e.X, e.Y);
+            engine.MouseMove(e.X, e.Y);
+        }
+
+        private void particlesBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            engine.MouseUp(e.X, e.Y, e.Button);
         }
     }
 }

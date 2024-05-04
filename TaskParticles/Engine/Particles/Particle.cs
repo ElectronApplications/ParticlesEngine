@@ -9,7 +9,7 @@ using TaskParticles.Engine.Interfaces;
 
 namespace TaskParticles.Engine.Particles
 {
-    abstract class Particle : GameObject, IDrawable, IMovable
+    public abstract class Particle : GameObject, IDrawable, IMovable
     {
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }

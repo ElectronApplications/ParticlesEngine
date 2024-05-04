@@ -58,6 +58,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(993, 662);
             Controls.Add(particlesBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)particlesBox).EndInit();
