@@ -22,6 +22,7 @@ namespace TaskParticles
             currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
 
             engine.GameObjects.Add(new GravityController());
+            engine.GameObjects.Add(new BackgroundParticlesController());
             engine.GameObjects.Add(currentMouseTool);
         }
 

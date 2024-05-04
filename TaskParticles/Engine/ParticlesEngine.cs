@@ -54,6 +54,8 @@ namespace TaskParticles.Engine
             {
                 controller.ControllerTick(this);
             }
+
+            GameObjects.RemoveAll(obj => ((obj as IFading)?.Life ?? 1) <= 0);
         }
 
         public void Draw(Graphics g)
