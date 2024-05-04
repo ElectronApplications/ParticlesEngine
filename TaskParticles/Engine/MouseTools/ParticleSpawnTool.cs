@@ -12,6 +12,7 @@ namespace TaskParticles.Engine.MouseTools
 {
     public class ParticleSpawnTool<T> : LeftMouseTool, IDrawable where T : Particle
     {
+        public int RenderPriority { get; set; } = 0;
         Func<Vector2, Vector2, T> ParticleSpawner { get; set; }
 
         private bool isMouseDown = false;

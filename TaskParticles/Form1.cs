@@ -52,5 +52,19 @@ namespace TaskParticles
         {
             engine.MouseUp(e.X, e.Y, e.Button);
         }
+
+        private void simpleParticleButton_Click(object sender, EventArgs e)
+        {
+            var prevIndex = engine.GameObjects.IndexOf(currentMouseTool);
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
+            engine.GameObjects[prevIndex] = currentMouseTool;
+        }
+
+        private void blackHoleButton_Click(object sender, EventArgs e)
+        {
+            var prevIndex = engine.GameObjects.IndexOf(currentMouseTool);
+            currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) => new BlackHole(position, diff / 15));
+            engine.GameObjects[prevIndex] = currentMouseTool;
+        }
     }
 }

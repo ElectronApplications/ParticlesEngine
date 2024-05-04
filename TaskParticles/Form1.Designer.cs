@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             particlesBox = new PictureBox();
             particlesTimer = new System.Windows.Forms.Timer(components);
+            simpleParticleButton = new Button();
+            blackHoleButton = new Button();
             ((System.ComponentModel.ISupportInitialize)particlesBox).BeginInit();
             SuspendLayout();
             // 
@@ -38,7 +40,7 @@
             // 
             particlesBox.Location = new Point(12, 12);
             particlesBox.Name = "particlesBox";
-            particlesBox.Size = new Size(969, 638);
+            particlesBox.Size = new Size(797, 638);
             particlesBox.TabIndex = 0;
             particlesBox.TabStop = false;
             particlesBox.Paint += particlesBox_Paint;
@@ -52,11 +54,33 @@
             particlesTimer.Interval = 15;
             particlesTimer.Tick += particlesTimer_Tick;
             // 
+            // simpleParticleButton
+            // 
+            simpleParticleButton.Location = new Point(815, 12);
+            simpleParticleButton.Name = "simpleParticleButton";
+            simpleParticleButton.Size = new Size(166, 23);
+            simpleParticleButton.TabIndex = 1;
+            simpleParticleButton.Text = "SimpleParticle";
+            simpleParticleButton.UseVisualStyleBackColor = true;
+            simpleParticleButton.Click += simpleParticleButton_Click;
+            // 
+            // blackHoleButton
+            // 
+            blackHoleButton.Location = new Point(815, 41);
+            blackHoleButton.Name = "blackHoleButton";
+            blackHoleButton.Size = new Size(166, 23);
+            blackHoleButton.TabIndex = 2;
+            blackHoleButton.Text = "BlackHole";
+            blackHoleButton.UseVisualStyleBackColor = true;
+            blackHoleButton.Click += blackHoleButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(993, 662);
+            Controls.Add(blackHoleButton);
+            Controls.Add(simpleParticleButton);
             Controls.Add(particlesBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -70,5 +94,7 @@
 
         private PictureBox particlesBox;
         private System.Windows.Forms.Timer particlesTimer;
+        private Button simpleParticleButton;
+        private Button blackHoleButton;
     }
 }

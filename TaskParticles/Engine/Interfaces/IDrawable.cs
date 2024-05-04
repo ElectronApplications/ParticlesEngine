@@ -9,6 +9,8 @@ namespace TaskParticles.Engine.Interfaces
 {
     public interface IDrawable
     {
+        int RenderPriority { get; set; }
+
         Matrix GetTransform(Matrix preMatrix);
 
         void Render(Graphics g);

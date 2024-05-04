@@ -8,6 +8,7 @@ namespace TaskParticles.Engine
 {
     public abstract class GameObject
     {
+        public bool Alive { get; set; } = true;
         public abstract void Tick();
     }
 }

@@ -8,7 +8,7 @@ using TaskParticles.Engine.Interfaces;
 
 namespace TaskParticles.Engine.Particles
 {
-    public class BackgroundParticle : Particle, IFading
+    public class BackgroundParticle : Particle
     {
         public int Life { get; set; }
 
@@ -16,6 +16,7 @@ namespace TaskParticles.Engine.Particles
 
         public BackgroundParticle(Vector2 position) : base(position, Vector2.Zero)
         {
+            RenderPriority = 1000;
             Life = 500;
             random = new Random();
         }
@@ -24,6 +25,8 @@ namespace TaskParticles.Engine.Particles
         {
             base.Tick();
             Life -= 1;
+            if (Life <= 0)
+                Alive = false;
             Velocity += new Vector2(((float)random.NextDouble() - 0.5f)/10.0f, ((float)random.NextDouble() - 0.5f)/10.0f);
         }
 

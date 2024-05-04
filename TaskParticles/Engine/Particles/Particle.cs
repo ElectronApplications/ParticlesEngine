@@ -11,6 +11,7 @@ namespace TaskParticles.Engine.Particles
 {
     public abstract class Particle : GameObject, IDrawable, IMovable
     {
+        public int RenderPriority { get; set; } = 100;
         public Vector2 Position { get; set; }
         public Vector2 Velocity { get; set; }
 

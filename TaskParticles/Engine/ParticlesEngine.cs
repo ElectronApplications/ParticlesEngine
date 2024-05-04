@@ -55,13 +55,13 @@ namespace TaskParticles.Engine
                 controller.ControllerTick(this);
             }
 
-            GameObjects.RemoveAll(obj => ((obj as IFading)?.Life ?? 1) <= 0);
+            GameObjects.RemoveAll(obj => !obj.Alive);
         }
 
         public void Draw(Graphics g)
         {
             g.Clear(Color.Black);
-            foreach (var drawableObject in DrawableObjects.ToList())
+            foreach (var drawableObject in DrawableObjects.OrderByDescending(obj => obj.RenderPriority).ToList())
             {
                 Matrix preMatrix = new Matrix();
                 g.Transform = drawableObject.GetTransform(preMatrix);
