@@ -22,7 +22,7 @@ namespace TaskParticles.Engine.Controllers
             if (random.Next(10) == 0)
             {
                 var position = new Vector2(random.Next(state.Width), random.Next(state.Height));
-                state.GameObjects.Add(new BackgroundParticle(position));
+                state.AddObject(new BackgroundParticle(position));
             }
         }
     }

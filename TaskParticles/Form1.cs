@@ -21,9 +21,9 @@ namespace TaskParticles
 
             currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
 
-            engine.GameObjects.Add(new GravityController());
-            engine.GameObjects.Add(new BackgroundParticlesController());
-            engine.GameObjects.Add(currentMouseTool);
+            engine.AddObject(new GravityController());
+            engine.AddObject(new BackgroundParticlesController());
+            engine.AddObject(currentMouseTool);
         }
 
         private void particlesBox_Paint(object sender, PaintEventArgs e)
@@ -55,16 +55,16 @@ namespace TaskParticles
 
         private void simpleParticleButton_Click(object sender, EventArgs e)
         {
-            var prevIndex = engine.GameObjects.IndexOf(currentMouseTool);
+            engine.RemoveObject(currentMouseTool);
             currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
-            engine.GameObjects[prevIndex] = currentMouseTool;
+            engine.AddObject(currentMouseTool);
         }
 
         private void blackHoleButton_Click(object sender, EventArgs e)
         {
-            var prevIndex = engine.GameObjects.IndexOf(currentMouseTool);
+            engine.RemoveObject(currentMouseTool);
             currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) => new BlackHole(position, diff / 15));
-            engine.GameObjects[prevIndex] = currentMouseTool;
+            engine.AddObject(currentMouseTool);
         }
     }
 }

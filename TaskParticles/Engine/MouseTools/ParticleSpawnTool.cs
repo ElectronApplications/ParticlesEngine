@@ -38,7 +38,7 @@ namespace TaskParticles.Engine.MouseTools
         {
             isMouseDown = false;
             var position = new Vector2(x, y);
-            state.GameObjects.Add(ParticleSpawner(position, (mouseDown - position)));
+            state.AddObject(ParticleSpawner(position, (mouseDown - position)));
         }
 
         public Matrix GetTransform(Matrix preMatrix)
@@ -50,6 +50,7 @@ namespace TaskParticles.Engine.MouseTools
         {
             if (isMouseDown)
             {
+                g.Transform = new Matrix();
                 g.DrawLine(new Pen(Color.White), mouseDown.X, mouseDown.Y, mouseCurrent.X, mouseCurrent.Y);
             }
         }

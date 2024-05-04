@@ -18,7 +18,11 @@ namespace TaskParticles.Engine
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public List<GameObject> GameObjects { get; set; }
+        private List<GameObject> gameObjects = new List<GameObject>();
+        private List<GameObject> gameObjectsAddQueue = new List<GameObject>();
+
+
+        public IEnumerable<GameObject> GameObjects { get => gameObjects; }
 
         public IEnumerable<GameController> GameControllers
         {
@@ -35,27 +39,40 @@ namespace TaskParticles.Engine
             get => GameObjects.Select(obj => obj as IDrawable).Where(obj => obj != null).Select(obj => obj!);
         }
 
+
         public ParticlesEngine(int width, int height)
         {
             rng = new Random();
             Width = width;
             Height = height;
-            GameObjects = new List<GameObject>();
+        }
+
+        public void AddObject(GameObject gameObject)
+        {
+            gameObjectsAddQueue.Add(gameObject);
+        }
+
+        public void RemoveObject(GameObject gameObject)
+        {
+            gameObject.Alive = false;
         }
 
         public void Tick()
         {
-            foreach (var obj in GameObjects.ToList())
+            foreach (var obj in GameObjects)
             {
                 obj.Tick();
             }
 
-            foreach (var controller in GameControllers.ToList())
+            foreach (var controller in GameControllers)
             {
                 controller.ControllerTick(this);
             }
 
-            GameObjects.RemoveAll(obj => !obj.Alive);
+            gameObjects.AddRange(gameObjectsAddQueue);
+            gameObjectsAddQueue.Clear();
+
+            gameObjects.RemoveAll(obj => !obj.Alive);
         }
 
         public void Draw(Graphics g)
@@ -73,7 +90,7 @@ namespace TaskParticles.Engine
         {
             if (button == MouseButtons.Left)
             {
-                foreach (var mouseTool in LeftMouseTools.ToList())
+                foreach (var mouseTool in LeftMouseTools)
                 {
                     mouseTool.MouseDown(x, y, this);
                 }
@@ -82,7 +99,7 @@ namespace TaskParticles.Engine
 
         public void MouseMove(int x, int y)
         {
-            foreach (var mouseTool in LeftMouseTools.ToList())
+            foreach (var mouseTool in LeftMouseTools)
             {
                 mouseTool.MouseMove(x, y, this);
             }
@@ -92,7 +109,7 @@ namespace TaskParticles.Engine
         {
             if (button == MouseButtons.Left)
             {
-                foreach (var mouseTool in LeftMouseTools.ToList())
+                foreach (var mouseTool in LeftMouseTools)
                 {
                     mouseTool.MouseUp(x, y, this);
                 }
