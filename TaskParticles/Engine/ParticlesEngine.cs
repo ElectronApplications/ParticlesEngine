@@ -34,6 +34,16 @@ namespace TaskParticles.Engine
             get => GameObjects.Select(obj => obj as LeftMouseTool).Where(obj => obj != null).Select(obj => obj!);
         }
 
+        public IEnumerable<IPreTransformable> PreTransformables
+        {
+            get => GameObjects.Select(obj => obj as IPreTransformable).Where(obj => obj != null).Select(obj => obj!);
+        }
+
+        public IEnumerable<IPostTransformable> PostTransformables
+        {
+            get => GameObjects.Select(obj => obj as IPostTransformable).Where(obj => obj != null).Select(obj => obj!);
+        }
+
         public IEnumerable<IDrawable> DrawableObjects
         {
             get => GameObjects.Select(obj => obj as IDrawable).Where(obj => obj != null).Select(obj => obj!);
@@ -80,8 +90,22 @@ namespace TaskParticles.Engine
             g.Clear(Color.Black);
             foreach (var drawableObject in DrawableObjects.OrderByDescending(obj => obj.RenderPriority).ToList())
             {
-                Matrix preMatrix = new Matrix();
-                g.Transform = drawableObject.GetTransform(preMatrix);
+                Matrix matrix = new Matrix();
+
+                foreach (var preTransformable in PreTransformables)
+                {
+                    preTransformable.Transform(matrix, (drawableObject as GameObject)!);
+                }
+
+                drawableObject.GetTransform(matrix);
+
+                foreach (var postTransformable in PostTransformables)
+                {
+                    postTransformable.Transform(matrix, (drawableObject as GameObject)!);
+                }
+
+                g.Transform = matrix;
+
                 drawableObject.Render(g);
             }
         }
