@@ -14,10 +14,10 @@ namespace TaskParticles.Engine.Particles
 
         private Random random;
 
-        public BackgroundParticle(Vector2 position) : base(position, Vector2.Zero)
+        public BackgroundParticle(Vector2 position, int life = 500) : base(position, Vector2.Zero)
         {
             RenderPriority = 1000;
-            Life = 500;
+            Life = life;
             random = new Random();
         }
 

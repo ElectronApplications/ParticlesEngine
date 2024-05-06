@@ -19,9 +19,10 @@ namespace TaskParticles
 
             engine = new ParticlesEngine(particlesBox.Width, particlesBox.Height);
 
-            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.Red));
 
             engine.AddObject(new GravityController());
+            engine.AddObject(new CollisionController());
             engine.AddObject(new BackgroundParticlesController());
             engine.AddObject(currentMouseTool);
         }
@@ -56,7 +57,7 @@ namespace TaskParticles
         private void simpleParticleButton_Click(object sender, EventArgs e)
         {
             engine.RemoveObject(currentMouseTool);
-            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10));
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.Red));
             engine.AddObject(currentMouseTool);
         }
 
