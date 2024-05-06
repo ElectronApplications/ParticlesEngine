@@ -8,8 +8,9 @@ using TaskParticles.Engine.Interfaces;
 
 namespace TaskParticles.Engine.Particles
 {
-    public class SimpleParticlePart : Particle, IAttractable
+    public class SimpleParticlePart : Particle, IAttractable, ICollidable
     {
+        public float Radius { get; set; } = 5;
         public float Mass { get; set; }
         public int Life { get; set; }
         public Color ParticleColor { get; set; }
@@ -32,7 +33,12 @@ namespace TaskParticles.Engine.Particles
         public override void Render(Graphics g)
         {
             var color = Color.FromArgb((int)(Math.Min(1f, (float)Life/500) * 255), ParticleColor);
-            g.FillEllipse(new SolidBrush(color), -5, -5, 10, 10);
+            g.FillEllipse(new SolidBrush(color), -Radius, -Radius, Radius*2, Radius*2);
+        }
+
+        public void Collide(ParticlesEngine state, GameObject otherObject)
+        {
+            
         }
     }
 }

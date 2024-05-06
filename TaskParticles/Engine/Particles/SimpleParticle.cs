@@ -24,7 +24,7 @@ namespace TaskParticles.Engine.Particles
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(ParticleColor), -15, -15, 30, 30);
+            g.FillEllipse(new SolidBrush(ParticleColor), -Radius, -Radius, Radius*2, Radius*2);
         }
 
         public void Collide(ParticlesEngine state, GameObject otherObject)
@@ -34,7 +34,7 @@ namespace TaskParticles.Engine.Particles
                 Alive = false;
                 for (int i = 0; i < 10; i++)
                 {
-                    var particlePart = new SimpleParticlePart(Position + new Vector2((float)random.NextDouble() * 10, (float)random.NextDouble() * 10), Velocity, Mass/10, ParticleColor, random.Next(1000));
+                    var particlePart = new SimpleParticlePart(Position + new Vector2((float)random.NextDouble() * 10, (float)random.NextDouble() * 10), Velocity/5, Mass/10, ParticleColor, random.Next(1000));
                     state.AddObject(particlePart);
                 }
             }

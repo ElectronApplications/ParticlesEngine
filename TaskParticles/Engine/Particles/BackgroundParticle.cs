@@ -32,14 +32,17 @@ namespace TaskParticles.Engine.Particles
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Life switch
+            var color = Life switch
             {
-                >250 => Color.Blue,
-                >125 => Color.LightBlue,
-                >50 => Color.Orange,
-                >25 => Color.Yellow,
+                > 250 => Color.Blue,
+                > 125 => Color.LightBlue,
+                > 50 => Color.Orange,
+                > 25 => Color.Yellow,
                 _ => Color.White
-            }), -2, -2, 4, 4);
+            };
+            color = Color.FromArgb((int)(Math.Min(1f, (float)Life / 500) * 255), color);
+
+            g.FillEllipse(new SolidBrush(color), -2, -2, 4, 4);
         }
     }
 }

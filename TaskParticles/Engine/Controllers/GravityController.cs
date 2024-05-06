@@ -35,7 +35,7 @@ namespace TaskParticles.Engine.Controllers
                         float distance = (obj1.Position - obj2.Position).Length();
                         if (distance > 10)
                         {
-                            float forceAbs = G * obj1.Mass * obj2.Mass / (obj1.Position - obj2.Position).LengthSquared();
+                            float forceAbs = G * Math.Abs(obj1.Mass) * Math.Abs(obj2.Mass) / (obj1.Position - obj2.Position).LengthSquared();
                             var normalized = (obj1.Position - obj2.Position) / distance;
                             obj2.ApplyForce(normalized * forceAbs);
                         }

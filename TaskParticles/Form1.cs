@@ -11,6 +11,8 @@ namespace TaskParticles
     {
         private ParticlesEngine engine;
         private LeftMouseTool currentMouseTool;
+        private BlackHole? previousBlackHole = null;
+        private Random random = new Random();
 
         public Form1()
         {
@@ -19,7 +21,7 @@ namespace TaskParticles
 
             engine = new ParticlesEngine(particlesBox.Width, particlesBox.Height);
 
-            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.Red));
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, random.Next(30), Color.Red));
 
             engine.AddObject(new GravityController());
             engine.AddObject(new CollisionController());
@@ -57,14 +59,33 @@ namespace TaskParticles
         private void simpleParticleButton_Click(object sender, EventArgs e)
         {
             engine.RemoveObject(currentMouseTool);
-            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.Red));
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.FromArgb(random.Next(255), random.Next(255), random.Next(255))));
             engine.AddObject(currentMouseTool);
         }
 
         private void blackHoleButton_Click(object sender, EventArgs e)
         {
             engine.RemoveObject(currentMouseTool);
-            currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) => new BlackHole(position, diff / 15));
+            currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) => {
+                var blackHole = new BlackHole(position, diff / 15);
+                previousBlackHole = blackHole;
+                return blackHole;
+            });
+            engine.AddObject(currentMouseTool);
+        }
+
+        private void whiteHoleButton_Click(object sender, EventArgs e)
+        {
+            engine.RemoveObject(currentMouseTool);
+            currentMouseTool = new ParticleSpawnTool<WhiteHole>((position, diff) =>
+            {
+                var whiteHole = new WhiteHole(position, diff / 15);
+                if (previousBlackHole != null)
+                {
+                        previousBlackHole.LinkedWhiteHole = whiteHole;
+                }
+                return whiteHole;
+            });
             engine.AddObject(currentMouseTool);
         }
     }
