@@ -17,6 +17,10 @@ namespace TaskParticles.Engine
 
         public int Width { get; set; }
         public int Height { get; set; }
+        public Vector2 Translation { get; set; } = Vector2.Zero;
+
+        private bool isMouseDown = false;
+        private Vector2 mousePrevious;
 
         private List<GameObject> gameObjects = new List<GameObject>();
         private List<GameObject> gameObjectsAddQueue = new List<GameObject>();
@@ -98,6 +102,7 @@ namespace TaskParticles.Engine
                 }
 
                 drawableObject.GetTransform(matrix);
+                matrix.Translate(Translation.X, Translation.Y);
 
                 foreach (var postTransformable in PostTransformables)
                 {
@@ -118,6 +123,10 @@ namespace TaskParticles.Engine
                 {
                     mouseTool.MouseDown(x, y, this);
                 }
+            } else
+            {
+                isMouseDown = true;
+                mousePrevious = new Vector2(x, y);
             }
         }
 
@@ -126,6 +135,11 @@ namespace TaskParticles.Engine
             foreach (var mouseTool in LeftMouseTools)
             {
                 mouseTool.MouseMove(x, y, this);
+            }
+            if (isMouseDown)
+            {
+                Translation += new Vector2(x, y) - mousePrevious;
+                mousePrevious = new Vector2(x, y);
             }
         }
 
@@ -137,6 +151,9 @@ namespace TaskParticles.Engine
                 {
                     mouseTool.MouseUp(x, y, this);
                 }
+            } else
+            {
+                isMouseDown = false;
             }
         }
     }
