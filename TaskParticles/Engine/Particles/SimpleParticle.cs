@@ -34,7 +34,14 @@ namespace TaskParticles.Engine.Particles
                 Alive = false;
                 for (int i = 0; i < 10; i++)
                 {
-                    var particlePart = new SimpleParticlePart(Position + new Vector2((float)random.NextDouble() * 10, (float)random.NextDouble() * 10), Velocity/5, Mass/10, ParticleColor, random.Next(1000));
+                    var particlePart = new SimpleParticlePart(
+                        Position + new Vector2((float)random.NextDouble() * 10,
+                        (float)random.NextDouble() * 10),
+                        Velocity/5 + new Vector2(5.0f * (float)(random.NextDouble() - 0.5), 5.0f * (float)(random.NextDouble() - 0.5)),
+                        Mass/10,
+                        ParticleColor,
+                        random.Next(1000)
+                    );
                     state.AddObject(particlePart);
                 }
             }

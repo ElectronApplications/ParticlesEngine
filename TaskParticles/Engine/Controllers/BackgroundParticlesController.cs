@@ -19,7 +19,7 @@ namespace TaskParticles.Engine.Controllers
 
         public override void ControllerTick(ParticlesEngine state)
         {
-            if (random.Next(1) == 0)
+            if (random.Next((int)(10 * state.Scale)) == 0)
             {
                 var position = new Vector2(random.Next(-state.Width/2, state.Width/2), random.Next(-state.Height/2, state.Height/2));
                 position /= state.Scale;

@@ -46,9 +46,15 @@ namespace TaskParticles.Engine.Particles
             if (otherObject is BlackHole || otherObject is WhiteHole)
             {
                 Alive = false;
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 50; i++)
                 {
-                    var particlePart = new SimpleParticlePart(Position + new Vector2((float)random.NextDouble() * 100, (float)random.NextDouble() * 100), Velocity, Mass / 100, Color.FromArgb(random.Next(255), random.Next(255), random.Next(255)), random.Next(1000));
+                    var particlePart = new SimpleParticlePart(
+                        Position + new Vector2((float)random.NextDouble() * 100,
+                        (float)random.NextDouble() * 100),
+                        Velocity/5 + new Vector2(20.0f * (float)(random.NextDouble() - 0.5), 20.0f * (float)(random.NextDouble() - 0.5)),
+                        Mass / 100,
+                        Color.FromArgb(random.Next(255), random.Next(255), random.Next(255)), random.Next(1000)
+                    );
                     state.AddObject(particlePart);
                 }
             }
