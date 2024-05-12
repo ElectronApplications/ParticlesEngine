@@ -1,5 +1,3 @@
-using System.Drawing.Drawing2D;
-using System.Numerics;
 using TaskParticles.Engine;
 using TaskParticles.Engine.Controllers;
 using TaskParticles.Engine.MouseTools;
@@ -17,6 +15,7 @@ namespace TaskParticles
         public Form1()
         {
             InitializeComponent();
+            particlesBox.MouseWheel += particlesBox_MouseWheel;
             particlesBox.Image = new Bitmap(particlesBox.Width, particlesBox.Height);
 
             engine = new ParticlesEngine(particlesBox.Width, particlesBox.Height);
@@ -56,6 +55,11 @@ namespace TaskParticles
             engine.MouseUp(e.X, e.Y, e.Button);
         }
 
+        private void particlesBox_MouseWheel(object? sender, MouseEventArgs e)
+        {
+            engine.MouseWheel(e.Delta);
+        }
+
         private void simpleParticleButton_Click(object sender, EventArgs e)
         {
             engine.RemoveObject(currentMouseTool);
@@ -66,7 +70,8 @@ namespace TaskParticles
         private void blackHoleButton_Click(object sender, EventArgs e)
         {
             engine.RemoveObject(currentMouseTool);
-            currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) => {
+            currentMouseTool = new ParticleSpawnTool<BlackHole>((position, diff) =>
+            {
                 var blackHole = new BlackHole(position, diff / 15);
                 previousBlackHole = blackHole;
                 return blackHole;
@@ -82,7 +87,7 @@ namespace TaskParticles
                 var whiteHole = new WhiteHole(position, diff / 15);
                 if (previousBlackHole != null)
                 {
-                        previousBlackHole.LinkedWhiteHole = whiteHole;
+                    previousBlackHole.LinkedWhiteHole = whiteHole;
                 }
                 return whiteHole;
             });

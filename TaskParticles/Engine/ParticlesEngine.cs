@@ -18,6 +18,8 @@ namespace TaskParticles.Engine
         public int Width { get; set; }
         public int Height { get; set; }
         public Vector2 Translation { get; set; } = Vector2.Zero;
+        public float Scale { get; set; } = 1.0f;
+        public float ScaleVelocity { get; set; } = 0.0f;
 
         private bool isMouseDown = false;
         private Vector2 mousePrevious;
@@ -91,6 +93,12 @@ namespace TaskParticles.Engine
 
         public void Draw(Graphics g)
         {
+            Scale += Scale*ScaleVelocity/10.0f;
+            ScaleVelocity -= ScaleVelocity*0.25f;
+
+            Scale = Math.Min(4.0f, Scale);
+            Scale = Math.Max(0.1f, Scale);
+
             g.Clear(Color.Black);
             foreach (var drawableObject in DrawableObjects.OrderByDescending(obj => obj.RenderPriority).ToList())
             {
@@ -101,6 +109,9 @@ namespace TaskParticles.Engine
                     preTransformable.Transform(matrix, (drawableObject as GameObject)!);
                 }
 
+                matrix.Translate(Width / 2, Height / 2);
+                matrix.Scale(Scale, Scale);
+
                 drawableObject.GetTransform(matrix);
                 matrix.Translate(Translation.X, Translation.Y);
 
@@ -108,8 +119,11 @@ namespace TaskParticles.Engine
                 {
                     postTransformable.Transform(matrix, (drawableObject as GameObject)!);
                 }
-
-                g.Transform = matrix;
+                try
+                {
+                    g.Transform = matrix;
+                }
+                catch { }
 
                 drawableObject.Render(g);
             }
@@ -138,7 +152,7 @@ namespace TaskParticles.Engine
             }
             if (isMouseDown)
             {
-                Translation += new Vector2(x, y) - mousePrevious;
+                Translation += (new Vector2(x, y) - mousePrevious) / Scale;
                 mousePrevious = new Vector2(x, y);
             }
         }
@@ -155,6 +169,11 @@ namespace TaskParticles.Engine
             {
                 isMouseDown = false;
             }
+        }
+
+        public void MouseWheel(int delta)
+        {
+            ScaleVelocity += delta/100.0f;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace TaskParticles.Engine.MouseTools
         {
             isMouseDown = false;
             var position = new Vector2(x, y);
-            state.AddObject(ParticleSpawner(position - state.Translation, (mouseDown - position)));
+            state.AddObject(ParticleSpawner((position - new Vector2(state.Width / 2, state.Height / 2)) / state.Scale - state.Translation, (mouseDown - position) / state.Scale));
         }
 
         public Matrix GetTransform(Matrix preMatrix)
