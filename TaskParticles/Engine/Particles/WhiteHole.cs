@@ -11,13 +11,13 @@ namespace TaskParticles.Engine.Particles
 {
     public class WhiteHole : Particle, IAttractable, IPostTransformable, ICollidable
     {
-        public float Radius { get; set; } = 70;
         public float Mass { get; set; } = -100;
 
         private Random random = new Random();
 
         public WhiteHole(Vector2 position, Vector2 velocity) : base(position, velocity)
         {
+            Radius = 70;
             RenderPriority = 10;
         }
 
@@ -58,6 +58,11 @@ namespace TaskParticles.Engine.Particles
                     state.AddObject(particlePart);
                 }
             }
+        }
+
+        public override string Debug()
+        {
+            return base.Debug() + $"Mass: {Mass};\n";
         }
     }
 }

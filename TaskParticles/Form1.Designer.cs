@@ -38,7 +38,11 @@
             this.debugLabel = new System.Windows.Forms.Label();
             this.stopStartButton = new System.Windows.Forms.Button();
             this.stepButton = new System.Windows.Forms.Button();
+            this.simulationSpeedBar = new System.Windows.Forms.TrackBar();
+            this.debugModeButton = new System.Windows.Forms.Button();
+            this.debugModeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulationSpeedBar)).BeginInit();
             this.SuspendLayout();
             // 
             // particlesBox
@@ -128,11 +132,44 @@
             this.stepButton.UseVisualStyleBackColor = true;
             this.stepButton.Click += new System.EventHandler(this.stepButton_Click);
             // 
+            // simulationSpeedBar
+            // 
+            this.simulationSpeedBar.Location = new System.Drawing.Point(815, 229);
+            this.simulationSpeedBar.Maximum = 100;
+            this.simulationSpeedBar.Minimum = 5;
+            this.simulationSpeedBar.Name = "simulationSpeedBar";
+            this.simulationSpeedBar.Size = new System.Drawing.Size(166, 45);
+            this.simulationSpeedBar.TabIndex = 8;
+            this.simulationSpeedBar.Value = 15;
+            this.simulationSpeedBar.Scroll += new System.EventHandler(this.simulationSpeedBar_Scroll);
+            // 
+            // debugModeButton
+            // 
+            this.debugModeButton.Location = new System.Drawing.Point(815, 300);
+            this.debugModeButton.Name = "debugModeButton";
+            this.debugModeButton.Size = new System.Drawing.Size(166, 23);
+            this.debugModeButton.TabIndex = 9;
+            this.debugModeButton.Text = "Enable";
+            this.debugModeButton.UseVisualStyleBackColor = true;
+            this.debugModeButton.Click += new System.EventHandler(this.debugModeButton_Click);
+            // 
+            // debugModeLabel
+            // 
+            this.debugModeLabel.AutoSize = true;
+            this.debugModeLabel.Location = new System.Drawing.Point(815, 277);
+            this.debugModeLabel.Name = "debugModeLabel";
+            this.debugModeLabel.Size = new System.Drawing.Size(76, 15);
+            this.debugModeLabel.TabIndex = 10;
+            this.debugModeLabel.Text = "Debug Mode";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(993, 662);
+            this.Controls.Add(this.debugModeLabel);
+            this.Controls.Add(this.debugModeButton);
+            this.Controls.Add(this.simulationSpeedBar);
             this.Controls.Add(this.stepButton);
             this.Controls.Add(this.stopStartButton);
             this.Controls.Add(this.debugLabel);
@@ -146,6 +183,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulationSpeedBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +200,8 @@
         private Label debugLabel;
         private Button stopStartButton;
         private Button stepButton;
+        private TrackBar simulationSpeedBar;
+        private Button debugModeButton;
+        private Label debugModeLabel;
     }
 }

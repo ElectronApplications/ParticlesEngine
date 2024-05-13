@@ -10,13 +10,13 @@ namespace TaskParticles.Engine.Particles
 {
     public class SimpleParticlePart : Particle, IAttractable, ICollidable
     {
-        public float Radius { get; set; } = 5;
         public float Mass { get; set; }
         public int Life { get; set; }
         public Color ParticleColor { get; set; }
 
         public SimpleParticlePart(Vector2 position, Vector2 velocity, float mass, Color color, int life) : base(position, velocity)
         {
+            Radius = 5;
             Mass = mass;
             ParticleColor = color;
             Life = life;
@@ -39,6 +39,11 @@ namespace TaskParticles.Engine.Particles
         public void Collide(ParticlesEngine state, GameObject otherObject)
         {
             
+        }
+
+        public override string Debug()
+        {
+            return base.Debug() + $"Mass: {Mass};\n" + $"Life: {Life}";
         }
     }
 }

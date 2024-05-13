@@ -11,7 +11,6 @@ namespace TaskParticles.Engine.Particles
 {
     public class BlackHole : Particle, IAttractable, IPostTransformable, ICollidable
     {
-        public float Radius { get; set; } = 70;
         public float Mass { get; set; } = 1000;
 
         private Random random = new Random();
@@ -19,6 +18,7 @@ namespace TaskParticles.Engine.Particles
 
         public BlackHole(Vector2 position, Vector2 velocity) : base(position, velocity)
         {
+            Radius = 70;
             RenderPriority = 10;
         }
 
@@ -72,6 +72,13 @@ namespace TaskParticles.Engine.Particles
                     otherObject.Alive = false;
                 }
             }
+        }
+
+        public override string Debug()
+        {
+            bool whiteHoleLinked = LinkedWhiteHole != null && LinkedWhiteHole.Alive;
+            string whiteHole = whiteHoleLinked ? "linked" : "not linked";
+            return base.Debug() + $"Mass: {Mass};\n" + $"White hole {whiteHole}";
         }
     }
 }

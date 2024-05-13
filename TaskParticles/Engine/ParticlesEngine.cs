@@ -20,6 +20,7 @@ namespace TaskParticles.Engine
         public Vector2 Translation { get; set; } = Vector2.Zero;
         public float Scale { get; set; } = 1.0f;
         public float ScaleVelocity { get; set; } = 0.0f;
+        public bool DebugMode { get; set; } = false;
 
         private bool isMouseDown = false;
         private Vector2 mousePrevious;
@@ -99,7 +100,7 @@ namespace TaskParticles.Engine
             ScaleVelocity -= ScaleVelocity*0.25f;
 
             Scale = Math.Min(4.0f, Scale);
-            Scale = Math.Max(0.1f, Scale);
+            Scale = Math.Max(0.01f, Scale);
 
             g.Clear(Color.Black);
             foreach (var drawableObject in DrawableObjects.OrderByDescending(obj => obj.RenderPriority).ToList())
@@ -128,6 +129,27 @@ namespace TaskParticles.Engine
                 catch { }
 
                 drawableObject.Render(g);
+
+                if (DebugMode && drawableObject is IMovable m)
+                {
+                    g.DrawLine(new Pen(Color.Yellow), Point.Empty, new Point((int)(m.Velocity.X*10), (int)(m.Velocity.Y*10)));
+                }
+
+                if (DebugMode && drawableObject is Particle p)
+                {
+                    var position = mousePrevious;
+                    position -= new Vector2(Width / 2, Height / 2);
+                    position /= Scale;
+                    position -= Translation;
+
+                    if ((position - p.Position).Length() <= p.Radius)
+                    {
+                        var debugInfo = p.Debug();
+                        var lines = debugInfo.Split("\n").Length;
+                        g.FillRectangle(new SolidBrush(Color.FromArgb(128, 128, 128, 128)), 0, 0, 100, 12*lines);
+                        g.DrawString(debugInfo, new Font("Verdana", 6), new SolidBrush(Color.White), 5, 5);
+                    }
+                }
             }
         }
 
@@ -155,8 +177,8 @@ namespace TaskParticles.Engine
             if (isMouseDown)
             {
                 Translation += (new Vector2(x, y) - mousePrevious) / Scale;
-                mousePrevious = new Vector2(x, y);
             }
+            mousePrevious = new Vector2(x, y);
         }
 
         public void MouseUp(int x, int y, MouseButtons button)

@@ -114,5 +114,16 @@ namespace TaskParticles
         {
             engine.Tick();
         }
+
+        private void simulationSpeedBar_Scroll(object sender, EventArgs e)
+        {
+            particlesTimer.Interval = simulationSpeedBar.Value;
+        }
+
+        private void debugModeButton_Click(object sender, EventArgs e)
+        {
+            engine.DebugMode = !engine.DebugMode;
+            debugModeButton.Text = engine.DebugMode ? "Disable" : "Enable";
+        }
     }
 }

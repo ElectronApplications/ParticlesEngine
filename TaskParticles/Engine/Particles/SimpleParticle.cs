@@ -11,13 +11,13 @@ namespace TaskParticles.Engine.Particles
     class SimpleParticle : Particle, IAttractable, ICollidable
     {
         public float Mass { get; set; }
-        public float Radius { get; set; } = 15;
 
         private Random random = new Random();
         private Color ParticleColor;
 
         public SimpleParticle(Vector2 position, Vector2 velocity, float mass, Color color) : base(position, velocity)
         {
+            Radius = 15;
             Mass = mass;
             ParticleColor = color;
         }

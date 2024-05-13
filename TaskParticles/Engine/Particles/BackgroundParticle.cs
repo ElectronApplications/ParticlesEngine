@@ -16,6 +16,7 @@ namespace TaskParticles.Engine.Particles
 
         public BackgroundParticle(Vector2 position, int life = 500) : base(position, Vector2.Zero)
         {
+            Radius = 4;
             RenderPriority = 1000;
             Life = life;
             random = new Random();
@@ -42,7 +43,12 @@ namespace TaskParticles.Engine.Particles
             };
             color = Color.FromArgb((int)(Math.Min(1f, (float)Life / 500) * 255), color);
 
-            g.FillEllipse(new SolidBrush(color), -2, -2, 4, 4);
+            g.FillEllipse(new SolidBrush(color), -Radius/2, -Radius/2, Radius, Radius);
+        }
+
+        public override string Debug()
+        {
+            return base.Debug() + $"Life: {Life}";
         }
     }
 }
