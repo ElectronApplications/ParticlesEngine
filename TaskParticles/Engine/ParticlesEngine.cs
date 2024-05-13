@@ -93,6 +93,8 @@ namespace TaskParticles.Engine
 
         public void Draw(Graphics g)
         {
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
             Scale += Scale*ScaleVelocity/10.0f;
             ScaleVelocity -= ScaleVelocity*0.25f;
 

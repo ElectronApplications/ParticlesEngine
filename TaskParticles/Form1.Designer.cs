@@ -28,78 +28,127 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            particlesBox = new PictureBox();
-            particlesTimer = new System.Windows.Forms.Timer(components);
-            simpleParticleButton = new Button();
-            blackHoleButton = new Button();
-            whiteHoleButton = new Button();
-            ((System.ComponentModel.ISupportInitialize)particlesBox).BeginInit();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.particlesBox = new System.Windows.Forms.PictureBox();
+            this.particlesTimer = new System.Windows.Forms.Timer(this.components);
+            this.simpleParticleButton = new System.Windows.Forms.Button();
+            this.blackHoleButton = new System.Windows.Forms.Button();
+            this.whiteHoleButton = new System.Windows.Forms.Button();
+            this.particlesLabel = new System.Windows.Forms.Label();
+            this.debugLabel = new System.Windows.Forms.Label();
+            this.stopStartButton = new System.Windows.Forms.Button();
+            this.stepButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).BeginInit();
+            this.SuspendLayout();
             // 
             // particlesBox
             // 
-            particlesBox.Location = new Point(12, 12);
-            particlesBox.Name = "particlesBox";
-            particlesBox.Size = new Size(797, 638);
-            particlesBox.TabIndex = 0;
-            particlesBox.TabStop = false;
-            particlesBox.Paint += particlesBox_Paint;
-            particlesBox.MouseDown += particlesBox_MouseDown;
-            particlesBox.MouseMove += particlesBox_MouseMove;
-            particlesBox.MouseUp += particlesBox_MouseUp;
+            this.particlesBox.Location = new System.Drawing.Point(12, 12);
+            this.particlesBox.Name = "particlesBox";
+            this.particlesBox.Size = new System.Drawing.Size(797, 638);
+            this.particlesBox.TabIndex = 0;
+            this.particlesBox.TabStop = false;
+            this.particlesBox.Paint += new System.Windows.Forms.PaintEventHandler(this.particlesBox_Paint);
+            this.particlesBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseDown);
+            this.particlesBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseMove);
+            this.particlesBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseUp);
             // 
             // particlesTimer
             // 
-            particlesTimer.Enabled = true;
-            particlesTimer.Interval = 15;
-            particlesTimer.Tick += particlesTimer_Tick;
+            this.particlesTimer.Enabled = true;
+            this.particlesTimer.Interval = 15;
+            this.particlesTimer.Tick += new System.EventHandler(this.particlesTimer_Tick);
             // 
             // simpleParticleButton
             // 
-            simpleParticleButton.Location = new Point(815, 12);
-            simpleParticleButton.Name = "simpleParticleButton";
-            simpleParticleButton.Size = new Size(166, 23);
-            simpleParticleButton.TabIndex = 1;
-            simpleParticleButton.Text = "SimpleParticle";
-            simpleParticleButton.UseVisualStyleBackColor = true;
-            simpleParticleButton.Click += simpleParticleButton_Click;
+            this.simpleParticleButton.Location = new System.Drawing.Point(815, 42);
+            this.simpleParticleButton.Name = "simpleParticleButton";
+            this.simpleParticleButton.Size = new System.Drawing.Size(166, 23);
+            this.simpleParticleButton.TabIndex = 1;
+            this.simpleParticleButton.Text = "SimpleParticle";
+            this.simpleParticleButton.UseVisualStyleBackColor = true;
+            this.simpleParticleButton.Click += new System.EventHandler(this.simpleParticleButton_Click);
             // 
             // blackHoleButton
             // 
-            blackHoleButton.Location = new Point(815, 41);
-            blackHoleButton.Name = "blackHoleButton";
-            blackHoleButton.Size = new Size(166, 23);
-            blackHoleButton.TabIndex = 2;
-            blackHoleButton.Text = "BlackHole";
-            blackHoleButton.UseVisualStyleBackColor = true;
-            blackHoleButton.Click += blackHoleButton_Click;
+            this.blackHoleButton.Location = new System.Drawing.Point(815, 71);
+            this.blackHoleButton.Name = "blackHoleButton";
+            this.blackHoleButton.Size = new System.Drawing.Size(166, 23);
+            this.blackHoleButton.TabIndex = 2;
+            this.blackHoleButton.Text = "BlackHole";
+            this.blackHoleButton.UseVisualStyleBackColor = true;
+            this.blackHoleButton.Click += new System.EventHandler(this.blackHoleButton_Click);
             // 
             // whiteHoleButton
             // 
-            whiteHoleButton.Location = new Point(815, 70);
-            whiteHoleButton.Name = "whiteHoleButton";
-            whiteHoleButton.Size = new Size(166, 23);
-            whiteHoleButton.TabIndex = 3;
-            whiteHoleButton.Text = "WhiteHole";
-            whiteHoleButton.UseVisualStyleBackColor = true;
-            whiteHoleButton.Click += whiteHoleButton_Click;
+            this.whiteHoleButton.Location = new System.Drawing.Point(815, 100);
+            this.whiteHoleButton.Name = "whiteHoleButton";
+            this.whiteHoleButton.Size = new System.Drawing.Size(166, 23);
+            this.whiteHoleButton.TabIndex = 3;
+            this.whiteHoleButton.Text = "WhiteHole";
+            this.whiteHoleButton.UseVisualStyleBackColor = true;
+            this.whiteHoleButton.Click += new System.EventHandler(this.whiteHoleButton_Click);
+            // 
+            // particlesLabel
+            // 
+            this.particlesLabel.AutoSize = true;
+            this.particlesLabel.Location = new System.Drawing.Point(815, 12);
+            this.particlesLabel.Name = "particlesLabel";
+            this.particlesLabel.Size = new System.Drawing.Size(51, 15);
+            this.particlesLabel.TabIndex = 4;
+            this.particlesLabel.Text = "Particles";
+            // 
+            // debugLabel
+            // 
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.Location = new System.Drawing.Point(815, 141);
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(42, 15);
+            this.debugLabel.TabIndex = 5;
+            this.debugLabel.Text = "Debug";
+            // 
+            // stopStartButton
+            // 
+            this.stopStartButton.Location = new System.Drawing.Point(815, 171);
+            this.stopStartButton.Name = "stopStartButton";
+            this.stopStartButton.Size = new System.Drawing.Size(166, 23);
+            this.stopStartButton.TabIndex = 6;
+            this.stopStartButton.Text = "Stop";
+            this.stopStartButton.UseVisualStyleBackColor = true;
+            this.stopStartButton.Click += new System.EventHandler(this.stopStartButton_Click);
+            // 
+            // stepButton
+            // 
+            this.stepButton.Enabled = false;
+            this.stepButton.Location = new System.Drawing.Point(815, 200);
+            this.stepButton.Name = "stepButton";
+            this.stepButton.Size = new System.Drawing.Size(166, 23);
+            this.stepButton.TabIndex = 7;
+            this.stepButton.Text = "Step";
+            this.stepButton.UseVisualStyleBackColor = true;
+            this.stepButton.Click += new System.EventHandler(this.stepButton_Click);
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(993, 662);
-            Controls.Add(whiteHoleButton);
-            Controls.Add(blackHoleButton);
-            Controls.Add(simpleParticleButton);
-            Controls.Add(particlesBox);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
-            Name = "Form1";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)particlesBox).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(993, 662);
+            this.Controls.Add(this.stepButton);
+            this.Controls.Add(this.stopStartButton);
+            this.Controls.Add(this.debugLabel);
+            this.Controls.Add(this.particlesLabel);
+            this.Controls.Add(this.whiteHoleButton);
+            this.Controls.Add(this.blackHoleButton);
+            this.Controls.Add(this.simpleParticleButton);
+            this.Controls.Add(this.particlesBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "Form1";
+            this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -109,5 +158,9 @@
         private Button simpleParticleButton;
         private Button blackHoleButton;
         private Button whiteHoleButton;
+        private Label particlesLabel;
+        private Label debugLabel;
+        private Button stopStartButton;
+        private Button stepButton;
     }
 }

@@ -12,6 +12,8 @@ namespace TaskParticles
         private BlackHole? previousBlackHole = null;
         private Random random = new Random();
 
+        private bool simulationRunning = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace TaskParticles
 
             engine = new ParticlesEngine(particlesBox.Width, particlesBox.Height);
 
-            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, random.Next(30), Color.Red));
+            currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.FromArgb(random.Next(255), random.Next(255), random.Next(255))));
 
             engine.AddObject(new GravityController());
             engine.AddObject(new CollisionController());
@@ -31,12 +33,16 @@ namespace TaskParticles
         private void particlesBox_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
+            
             engine.Draw(g);
         }
 
         private void particlesTimer_Tick(object sender, EventArgs e)
         {
-            engine.Tick();
+            if (simulationRunning)
+            {
+                engine.Tick();
+            }
             particlesBox.Invalidate();
         }
 
@@ -65,6 +71,7 @@ namespace TaskParticles
             engine.RemoveObject(currentMouseTool);
             currentMouseTool = new ParticleSpawnTool<SimpleParticle>((position, diff) => new SimpleParticle(position, diff / 15, 10, Color.FromArgb(random.Next(255), random.Next(255), random.Next(255))));
             engine.AddObject(currentMouseTool);
+            engine.Tick();
         }
 
         private void blackHoleButton_Click(object sender, EventArgs e)
@@ -77,6 +84,7 @@ namespace TaskParticles
                 return blackHole;
             });
             engine.AddObject(currentMouseTool);
+            engine.Tick();
         }
 
         private void whiteHoleButton_Click(object sender, EventArgs e)
@@ -92,6 +100,19 @@ namespace TaskParticles
                 return whiteHole;
             });
             engine.AddObject(currentMouseTool);
+            engine.Tick();
+        }
+
+        private void stopStartButton_Click(object sender, EventArgs e)
+        {
+            simulationRunning = !simulationRunning;
+            stopStartButton.Text = simulationRunning ? "Stop" : "Start";
+            stepButton.Enabled = !simulationRunning;
+        }
+
+        private void stepButton_Click(object sender, EventArgs e)
+        {
+            engine.Tick();
         }
     }
 }
