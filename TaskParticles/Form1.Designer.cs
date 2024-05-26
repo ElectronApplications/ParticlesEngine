@@ -28,165 +28,164 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.particlesBox = new System.Windows.Forms.PictureBox();
-            this.particlesTimer = new System.Windows.Forms.Timer(this.components);
-            this.simpleParticleButton = new System.Windows.Forms.Button();
-            this.blackHoleButton = new System.Windows.Forms.Button();
-            this.whiteHoleButton = new System.Windows.Forms.Button();
-            this.particlesLabel = new System.Windows.Forms.Label();
-            this.debugLabel = new System.Windows.Forms.Label();
-            this.stopStartButton = new System.Windows.Forms.Button();
-            this.stepButton = new System.Windows.Forms.Button();
-            this.simulationSpeedBar = new System.Windows.Forms.TrackBar();
-            this.debugModeButton = new System.Windows.Forms.Button();
-            this.debugModeLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationSpeedBar)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            particlesBox = new PictureBox();
+            particlesTimer = new System.Windows.Forms.Timer(components);
+            simpleParticleButton = new Button();
+            blackHoleButton = new Button();
+            whiteHoleButton = new Button();
+            particlesLabel = new Label();
+            debugLabel = new Label();
+            stopStartButton = new Button();
+            stepButton = new Button();
+            simulationSpeedBar = new TrackBar();
+            debugModeButton = new Button();
+            debugModeLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)particlesBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)simulationSpeedBar).BeginInit();
+            SuspendLayout();
             // 
             // particlesBox
             // 
-            this.particlesBox.Location = new System.Drawing.Point(12, 12);
-            this.particlesBox.Name = "particlesBox";
-            this.particlesBox.Size = new System.Drawing.Size(797, 638);
-            this.particlesBox.TabIndex = 0;
-            this.particlesBox.TabStop = false;
-            this.particlesBox.Paint += new System.Windows.Forms.PaintEventHandler(this.particlesBox_Paint);
-            this.particlesBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseDown);
-            this.particlesBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseMove);
-            this.particlesBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.particlesBox_MouseUp);
+            particlesBox.Location = new Point(12, 12);
+            particlesBox.Name = "particlesBox";
+            particlesBox.Size = new Size(944, 688);
+            particlesBox.TabIndex = 0;
+            particlesBox.TabStop = false;
+            particlesBox.Paint += particlesBox_Paint;
+            particlesBox.MouseDown += particlesBox_MouseDown;
+            particlesBox.MouseMove += particlesBox_MouseMove;
+            particlesBox.MouseUp += particlesBox_MouseUp;
             // 
             // particlesTimer
             // 
-            this.particlesTimer.Enabled = true;
-            this.particlesTimer.Interval = 15;
-            this.particlesTimer.Tick += new System.EventHandler(this.particlesTimer_Tick);
+            particlesTimer.Enabled = true;
+            particlesTimer.Interval = 15;
+            particlesTimer.Tick += particlesTimer_Tick;
             // 
             // simpleParticleButton
             // 
-            this.simpleParticleButton.Location = new System.Drawing.Point(815, 42);
-            this.simpleParticleButton.Name = "simpleParticleButton";
-            this.simpleParticleButton.Size = new System.Drawing.Size(166, 23);
-            this.simpleParticleButton.TabIndex = 1;
-            this.simpleParticleButton.Text = "SimpleParticle";
-            this.simpleParticleButton.UseVisualStyleBackColor = true;
-            this.simpleParticleButton.Click += new System.EventHandler(this.simpleParticleButton_Click);
+            simpleParticleButton.Location = new Point(962, 42);
+            simpleParticleButton.Name = "simpleParticleButton";
+            simpleParticleButton.Size = new Size(166, 23);
+            simpleParticleButton.TabIndex = 1;
+            simpleParticleButton.Text = "SimpleParticle";
+            simpleParticleButton.UseVisualStyleBackColor = true;
+            simpleParticleButton.Click += simpleParticleButton_Click;
             // 
             // blackHoleButton
             // 
-            this.blackHoleButton.Location = new System.Drawing.Point(815, 71);
-            this.blackHoleButton.Name = "blackHoleButton";
-            this.blackHoleButton.Size = new System.Drawing.Size(166, 23);
-            this.blackHoleButton.TabIndex = 2;
-            this.blackHoleButton.Text = "BlackHole";
-            this.blackHoleButton.UseVisualStyleBackColor = true;
-            this.blackHoleButton.Click += new System.EventHandler(this.blackHoleButton_Click);
+            blackHoleButton.Location = new Point(962, 71);
+            blackHoleButton.Name = "blackHoleButton";
+            blackHoleButton.Size = new Size(166, 23);
+            blackHoleButton.TabIndex = 2;
+            blackHoleButton.Text = "BlackHole";
+            blackHoleButton.UseVisualStyleBackColor = true;
+            blackHoleButton.Click += blackHoleButton_Click;
             // 
             // whiteHoleButton
             // 
-            this.whiteHoleButton.Location = new System.Drawing.Point(815, 100);
-            this.whiteHoleButton.Name = "whiteHoleButton";
-            this.whiteHoleButton.Size = new System.Drawing.Size(166, 23);
-            this.whiteHoleButton.TabIndex = 3;
-            this.whiteHoleButton.Text = "WhiteHole";
-            this.whiteHoleButton.UseVisualStyleBackColor = true;
-            this.whiteHoleButton.Click += new System.EventHandler(this.whiteHoleButton_Click);
+            whiteHoleButton.Location = new Point(962, 100);
+            whiteHoleButton.Name = "whiteHoleButton";
+            whiteHoleButton.Size = new Size(166, 23);
+            whiteHoleButton.TabIndex = 3;
+            whiteHoleButton.Text = "WhiteHole";
+            whiteHoleButton.UseVisualStyleBackColor = true;
+            whiteHoleButton.Click += whiteHoleButton_Click;
             // 
             // particlesLabel
             // 
-            this.particlesLabel.AutoSize = true;
-            this.particlesLabel.Location = new System.Drawing.Point(815, 12);
-            this.particlesLabel.Name = "particlesLabel";
-            this.particlesLabel.Size = new System.Drawing.Size(51, 15);
-            this.particlesLabel.TabIndex = 4;
-            this.particlesLabel.Text = "Particles";
+            particlesLabel.AutoSize = true;
+            particlesLabel.Location = new Point(962, 12);
+            particlesLabel.Name = "particlesLabel";
+            particlesLabel.Size = new Size(51, 15);
+            particlesLabel.TabIndex = 4;
+            particlesLabel.Text = "Particles";
             // 
             // debugLabel
             // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(815, 141);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(42, 15);
-            this.debugLabel.TabIndex = 5;
-            this.debugLabel.Text = "Debug";
+            debugLabel.AutoSize = true;
+            debugLabel.Location = new Point(962, 141);
+            debugLabel.Name = "debugLabel";
+            debugLabel.Size = new Size(42, 15);
+            debugLabel.TabIndex = 5;
+            debugLabel.Text = "Debug";
             // 
             // stopStartButton
             // 
-            this.stopStartButton.Location = new System.Drawing.Point(815, 171);
-            this.stopStartButton.Name = "stopStartButton";
-            this.stopStartButton.Size = new System.Drawing.Size(166, 23);
-            this.stopStartButton.TabIndex = 6;
-            this.stopStartButton.Text = "Stop";
-            this.stopStartButton.UseVisualStyleBackColor = true;
-            this.stopStartButton.Click += new System.EventHandler(this.stopStartButton_Click);
+            stopStartButton.Location = new Point(962, 171);
+            stopStartButton.Name = "stopStartButton";
+            stopStartButton.Size = new Size(166, 23);
+            stopStartButton.TabIndex = 6;
+            stopStartButton.Text = "Stop";
+            stopStartButton.UseVisualStyleBackColor = true;
+            stopStartButton.Click += stopStartButton_Click;
             // 
             // stepButton
             // 
-            this.stepButton.Enabled = false;
-            this.stepButton.Location = new System.Drawing.Point(815, 200);
-            this.stepButton.Name = "stepButton";
-            this.stepButton.Size = new System.Drawing.Size(166, 23);
-            this.stepButton.TabIndex = 7;
-            this.stepButton.Text = "Step";
-            this.stepButton.UseVisualStyleBackColor = true;
-            this.stepButton.Click += new System.EventHandler(this.stepButton_Click);
+            stepButton.Enabled = false;
+            stepButton.Location = new Point(962, 200);
+            stepButton.Name = "stepButton";
+            stepButton.Size = new Size(166, 23);
+            stepButton.TabIndex = 7;
+            stepButton.Text = "Step";
+            stepButton.UseVisualStyleBackColor = true;
+            stepButton.Click += stepButton_Click;
             // 
             // simulationSpeedBar
             // 
-            this.simulationSpeedBar.Location = new System.Drawing.Point(815, 229);
-            this.simulationSpeedBar.Maximum = 100;
-            this.simulationSpeedBar.Minimum = 5;
-            this.simulationSpeedBar.Name = "simulationSpeedBar";
-            this.simulationSpeedBar.Size = new System.Drawing.Size(166, 45);
-            this.simulationSpeedBar.TabIndex = 8;
-            this.simulationSpeedBar.Value = 15;
-            this.simulationSpeedBar.Scroll += new System.EventHandler(this.simulationSpeedBar_Scroll);
+            simulationSpeedBar.Location = new Point(962, 229);
+            simulationSpeedBar.Maximum = 100;
+            simulationSpeedBar.Minimum = 5;
+            simulationSpeedBar.Name = "simulationSpeedBar";
+            simulationSpeedBar.Size = new Size(166, 45);
+            simulationSpeedBar.TabIndex = 8;
+            simulationSpeedBar.Value = 15;
+            simulationSpeedBar.Scroll += simulationSpeedBar_Scroll;
             // 
             // debugModeButton
             // 
-            this.debugModeButton.Location = new System.Drawing.Point(815, 300);
-            this.debugModeButton.Name = "debugModeButton";
-            this.debugModeButton.Size = new System.Drawing.Size(166, 23);
-            this.debugModeButton.TabIndex = 9;
-            this.debugModeButton.Text = "Enable";
-            this.debugModeButton.UseVisualStyleBackColor = true;
-            this.debugModeButton.Click += new System.EventHandler(this.debugModeButton_Click);
+            debugModeButton.Location = new Point(962, 300);
+            debugModeButton.Name = "debugModeButton";
+            debugModeButton.Size = new Size(166, 23);
+            debugModeButton.TabIndex = 9;
+            debugModeButton.Text = "Enable";
+            debugModeButton.UseVisualStyleBackColor = true;
+            debugModeButton.Click += debugModeButton_Click;
             // 
             // debugModeLabel
             // 
-            this.debugModeLabel.AutoSize = true;
-            this.debugModeLabel.Location = new System.Drawing.Point(815, 277);
-            this.debugModeLabel.Name = "debugModeLabel";
-            this.debugModeLabel.Size = new System.Drawing.Size(76, 15);
-            this.debugModeLabel.TabIndex = 10;
-            this.debugModeLabel.Text = "Debug Mode";
+            debugModeLabel.AutoSize = true;
+            debugModeLabel.Location = new Point(962, 277);
+            debugModeLabel.Name = "debugModeLabel";
+            debugModeLabel.Size = new Size(76, 15);
+            debugModeLabel.TabIndex = 10;
+            debugModeLabel.Text = "Debug Mode";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 662);
-            this.Controls.Add(this.debugModeLabel);
-            this.Controls.Add(this.debugModeButton);
-            this.Controls.Add(this.simulationSpeedBar);
-            this.Controls.Add(this.stepButton);
-            this.Controls.Add(this.stopStartButton);
-            this.Controls.Add(this.debugLabel);
-            this.Controls.Add(this.particlesLabel);
-            this.Controls.Add(this.whiteHoleButton);
-            this.Controls.Add(this.blackHoleButton);
-            this.Controls.Add(this.simpleParticleButton);
-            this.Controls.Add(this.particlesBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.particlesBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationSpeedBar)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1141, 712);
+            Controls.Add(debugModeLabel);
+            Controls.Add(debugModeButton);
+            Controls.Add(simulationSpeedBar);
+            Controls.Add(stepButton);
+            Controls.Add(stopStartButton);
+            Controls.Add(debugLabel);
+            Controls.Add(particlesLabel);
+            Controls.Add(whiteHoleButton);
+            Controls.Add(blackHoleButton);
+            Controls.Add(simpleParticleButton);
+            Controls.Add(particlesBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)particlesBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)simulationSpeedBar).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

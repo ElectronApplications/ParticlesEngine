@@ -11,7 +11,7 @@ namespace TaskParticles.Engine.Particles
 {
     public class BlackHole : Particle, IAttractable, IPostTransformable, ICollidable
     {
-        public float Mass { get; set; } = 1000;
+        public float Mass { get; set; } = 10000;
 
         private Random random = new Random();
         public WhiteHole? LinkedWhiteHole { get; set; } = null;
@@ -34,7 +34,7 @@ namespace TaskParticles.Engine.Particles
             {
                 Vector2 diff = Position - pos.Position;
                 
-                var scaleFactor = Math.Min(1.5f, Math.Max(1, 17500 / diff.LengthSquared()));
+                var scaleFactor = Math.Min(2.5f, Math.Max(1, 35000 / diff.LengthSquared()));
                 var angle = (float)(Math.Atan2(diff.Y, diff.X) * 180 / Math.PI);
 
                 matrix.Rotate(angle);
